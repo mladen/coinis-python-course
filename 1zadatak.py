@@ -3,8 +3,8 @@
 izracunaj_povrsinu = lambda a, b: a * b
 izracunaj_obim = lambda a, b: 2 * (a + b)
 
-a = float(input("Unesite dužinu pravougaonika: "))
-b = float(input("Unesite širinu pravougaonika: "))
+a = float(input("Unesite duzinu pravougaonika: "))
+b = float(input("Unesite sirinu pravougaonika: "))
 
 povrsina = izracunaj_povrsinu(a, b)
 obim = izracunaj_obim(a, b)
