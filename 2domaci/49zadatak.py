@@ -2,4 +2,7 @@
 string = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 duzina = 10
 
-print(string[:duzina] + "...")
+if len(string) <= duzina:
+    print(string + "...")
+else:
+    print(string[:duzina] + "...")
