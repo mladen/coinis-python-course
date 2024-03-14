@@ -36,7 +36,6 @@ def najduzi_testerasti_podniz(lista):
     return maksimalni_niz
 
 
-# Testiranje funkcije
 # lista = [1, 2, 3, 2, 1, 2, 3, 4, 3, 2, 1]
 lista = [1, 2, 3, 2, 1, 2, 3, 4, 5, 1, 2, 3, 1, 2, 3, 4, 5, 6, 7]
 print("Najduzi testerasti podniz:", najduzi_testerasti_podniz(lista))
