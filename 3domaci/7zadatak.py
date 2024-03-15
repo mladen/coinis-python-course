@@ -103,44 +103,60 @@ class Biblioteka:
             print("Knjiga ne postoji")
 
 
-knjiga1 = Knjiga("Rat i mir", "Lav Tolstoj", 1865, 2)
-knjiga2 = Knjiga("Zapisi iz podzemlja", "Fjodor Dostojevski", 1864, 3)
-knjiga3 = Knjiga("Zlocin i kazna", "Fjodor Dostojevski", 1866, 1)
+# knjiga1 = Knjiga("Rat i mir", "Lav Tolstoj", 1865, 2)
+# knjiga2 = Knjiga("Zapisi iz podzemlja", "Fjodor Dostojevski", 1864, 3)
+# knjiga3 = Knjiga("Zlocin i kazna", "Fjodor Dostojevski", 1866, 1)
 
 # print(knjiga1.get_autor())
 biblioteka1 = Biblioteka()
 
-# Dodajemo knjigu1
-biblioteka1.dodaj_knjigu(knjiga1)
-# Dodajemo knjigu2
-biblioteka1.dodaj_knjigu(knjiga2)
-# print(knjiga2)
-# biblioteka1.dodaj_knjigu(knjiga2)
-# Dodajemo knjigu 3
-biblioteka1.dodaj_knjigu(knjiga3)
+while True:
+    print("\nIzaberite opciju:")
+    print("1. Dodaj knjigu")
+    print("2. Obrisi knjigu")
+    print("3. Pronadji knjigu po naslovu")
+    print("4. Pronadji knjigu po autoru")
+    print("5. Iznajmi knjigu")
+    print("6. Vrati knjigu")
+    print("7. Prikazi sve knjige")
+    print("8. Izlaz")
+    izbor = input("Unesite broj opcije: ")
 
-# Prvi nacin da se izlistaju knjige (koriscenjem __str__ metode)
-print(biblioteka1)
-
-# Drugi nacin da se izlistaju knjige
-# for knjiga in biblioteka1.get_knjige():
-#     print(knjiga)
-
-# Brisanje knjige (prvi nacin - prosledjujemo objekat)
-# print(f"Brisemo knjigu {knjiga1}")
-# biblioteka1.obrisi_knjigu(knjiga1)
-
-# Brisanje knjige (drugi nacin - prosledjujemo naslov)
-print(f"Brisemo knjigu {knjiga1.get_naslov()}")
-biblioteka1.obrisi_knjigu(knjiga1.get_naslov())
-
-print(biblioteka1)
-
-# Iznajmljivanje knjige
-print("Iznajmljivanje knjige 'Zapisi iz podzemlja' (smanjuje broj kopija za 1)")
-biblioteka1.iznajmi_knjigu(
-    "Zapisi iz podzemlja"
-)  # Ovo ce umanjiti broj kopija knjige za 1
-
-# Prikazujemo sve knjige
-print(biblioteka1)
+    if izbor == "1":
+        naslov = input("Unesite naslov knjige: ")
+        autor = input("Unesite autora knjige: ")
+        godina_izdanja = int(input("Unesite godinu izdanja knjige: "))
+        broj_kopija = int(input("Unesite broj kopija knjige: "))
+        nova_knjiga = Knjiga(naslov, autor, godina_izdanja, broj_kopija)
+        biblioteka1.dodaj_knjigu(nova_knjiga)
+    elif izbor == "2":
+        naslov = input("Unesite naslov knjige koju zelite da obrisete: ")
+        biblioteka1.obrisi_knjigu(naslov)
+    elif izbor == "3":
+        naslov = input("Unesite naslov knjige koju zelite da pronadjete: ")
+        knjiga = biblioteka1.pronadji_knjigu_po_naslovu(naslov)
+        if knjiga is not None:
+            print(
+                f"Naslov: {knjiga.get_naslov()}, Autor: {knjiga.get_autor()}, Godina izdanja: {knjiga.get_godina_izdanja()}, Broj kopija: {knjiga.get_broj_kopija()}"
+            )
+        else:
+            print("Knjiga ne postoji")
+    elif izbor == "4":
+        autor = input("Unesite autora knjige koju zelite da pronadjete: ")
+        knjiga = biblioteka1.pronadji_knjigu_po_autoru(autor)
+        if knjiga is not None:
+            print(
+                f"Naslov: {knjiga.get_naslov()}, Autor: {knjiga.get_autor()}, Godina izdanja: {knjiga.get_godina_izdanja()}, Broj kopija: {knjiga.get_broj_kopija()}"
+            )
+        else:
+            print("Knjiga ne postoji")
+    elif izbor == "5":
+        naslov = input("Unesite naslov knjige koju zelite da iznajmite: ")
+        biblioteka1.iznajmi_knjigu(naslov)
+    elif izbor == "6":
+        naslov = input("Unesite naslov knjige koju zelite da vratite: ")
+        biblioteka1.vrati_knjigu(naslov)
+    elif izbor == "7":
+        print(biblioteka1)
+    elif izbor == "8":
+        break
