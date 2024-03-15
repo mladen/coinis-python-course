@@ -5,8 +5,8 @@ class Knjiga:
         self.godina_izdanja = godina_izdanja
         self.broj_kopija = broj_kopija
 
-    def __str__(self):
-        return f"{self.naslov} - {self.autor}"
+    # def __str__(self):
+    #     return f"{self.naslov} - {self.autor}"
 
     def get_naslov(self) -> str:
         return self.naslov
@@ -55,17 +55,38 @@ class Biblioteka:
     def dodaj_knjigu(self, nova_knjiga) -> None:
         self.knjige.append(nova_knjiga)
 
-    def obrisi_knjigu(self, knjiga) -> None:
-        self.knjige.remove(knjiga)
+    # def obrisi_knjigu(self, knjiga) -> None:
+    #     self.knjige.remove(knjiga)
 
-    def pronadji_knjigu(self, naslov) -> Knjiga:
+    def obrisi_knjigu(self, naslov) -> None:
+        for knjiga in self.knjige:
+            if knjiga.get_naslov() == naslov:
+                self.knjige.remove(knjiga)
+                return
+        print("Knjiga ne postoji")
+
+    def pronadji_knjigu_po_naslovu(self, naslov) -> Knjiga:
         for knjiga in self.knjige:
             if knjiga.get_naslov() == naslov:
                 return knjiga
         return None
 
-    def iznajmi_knjigu(self, naslov) -> None:
-        knjiga = self.pronadji_knjigu(naslov)
+    def pronadji_knjigu_po_autoru(self, autor) -> Knjiga:
+        for knjiga in self.knjige:
+            if knjiga.get_autor() == autor:
+                return knjiga
+        return None
+
+    def pronadji_knjigu(self, naslov=None, autor=None) -> Knjiga:
+        if naslov is not None:
+            return self.pronadji_knjigu_po_naslovu(naslov)
+        elif autor is not None:
+            return self.pronadji_knjigu_po_autoru(autor)
+        else:
+            return None
+
+    def iznajmi_knjigu(self, naslov=None, autor=None) -> None:
+        knjiga = self.pronadji_knjigu(naslov, autor)
         if knjiga is not None:
             if knjiga.get_broj_kopija() > 0:
                 knjiga.set_broj_kopija(knjiga.get_broj_kopija() - 1)
@@ -74,23 +95,52 @@ class Biblioteka:
         else:
             print("Knjiga ne postoji")
 
-    def vrati_knjigu(self, naslov) -> None:
-        knjiga = self.pronadji_knjigu(naslov)
+    def vrati_knjigu(self, naslov=None, autor=None) -> None:
+        knjiga = self.pronadji_knjigu(naslov, autor)
         if knjiga is not None:
             knjiga.set_broj_kopija(knjiga.get_broj_kopija() + 1)
         else:
             print("Knjiga ne postoji")
 
 
-knjiga1 = Knjiga("Rat i mir", "Lav Tolstoj", 1865, 5)
-knjiga2 = Knjiga("Zapisi iz podzemlja", "Fjodor Dostojevski", 1864, 5)
+knjiga1 = Knjiga("Rat i mir", "Lav Tolstoj", 1865, 2)
+knjiga2 = Knjiga("Zapisi iz podzemlja", "Fjodor Dostojevski", 1864, 3)
+knjiga3 = Knjiga("Zlocin i kazna", "Fjodor Dostojevski", 1866, 1)
+
 # print(knjiga1.get_autor())
 biblioteka1 = Biblioteka()
-biblioteka1.dodaj_knjigu(knjiga2)
+
+# Dodajemo knjigu1
 biblioteka1.dodaj_knjigu(knjiga1)
+# Dodajemo knjigu2
+biblioteka1.dodaj_knjigu(knjiga2)
 # print(knjiga2)
 # biblioteka1.dodaj_knjigu(knjiga2)
-# print(biblioteka1)
+# Dodajemo knjigu 3
+biblioteka1.dodaj_knjigu(knjiga3)
 
-for knjiga in biblioteka1.get_knjige():
-    print(knjiga)
+# Prvi nacin da se izlistaju knjige (koriscenjem __str__ metode)
+print(biblioteka1)
+
+# Drugi nacin da se izlistaju knjige
+# for knjiga in biblioteka1.get_knjige():
+#     print(knjiga)
+
+# Brisanje knjige (prvi nacin - prosledjujemo objekat)
+# print(f"Brisemo knjigu {knjiga1}")
+# biblioteka1.obrisi_knjigu(knjiga1)
+
+# Brisanje knjige (drugi nacin - prosledjujemo naslov)
+print(f"Brisemo knjigu {knjiga1.get_naslov()}")
+biblioteka1.obrisi_knjigu(knjiga1.get_naslov())
+
+print(biblioteka1)
+
+# Iznajmljivanje knjige
+print("Iznajmljivanje knjige 'Zapisi iz podzemlja' (smanjuje broj kopija za 1)")
+biblioteka1.iznajmi_knjigu(
+    "Zapisi iz podzemlja"
+)  # Ovo ce umanjiti broj kopija knjige za 1
+
+# Prikazujemo sve knjige
+print(biblioteka1)
