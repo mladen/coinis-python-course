@@ -42,9 +42,38 @@ class Televizor:
     def set_kanali(self, kanali) -> None:
         self.kanali = kanali
 
+    # Metode
+    def dodaj_kanal(self, naziv_kanala) -> None:
+        self.kanali.append(naziv_kanala)
+
+    def obrisi_kanal(self, naziv_kanala) -> None:
+        self.kanali.remove(naziv_kanala)
+
+    def pojacaj_ton(self) -> None:
+        if self.jacina_tona < 10:
+            self.jacina_tona += 1
+        else:
+            print("Ton je vec na maksimumu")
+
+    def ime_kanala(self, broj_kanala) -> str:
+        return self.kanali[broj_kanala - 1]
+
 
 mladen_gleda = Televizor(1, "Prva", 5)
-print("Mladen gleda: ", mladen_gleda.get_broj_tekuceg_kanala())
-
+print("Broj tekuceg kanala: ", mladen_gleda.get_broj_tekuceg_kanala())
 mladen_gleda.set_broj_tekuceg_kanala(99)
-print("Mladen gleda: ", mladen_gleda.get_broj_tekuceg_kanala())
+print(
+    "Broj tekuceg kanala (pokusaj postavljanja na 99): ",
+    mladen_gleda.get_broj_tekuceg_kanala(),
+)
+
+mladen_gleda.get_jacina_tona()
+print("Jacina tona: ", mladen_gleda.get_jacina_tona())
+mladen_gleda.set_jacina_tona(9)
+print("Jacina tona (postavljeno na 9): ", mladen_gleda.get_jacina_tona())
+
+# mladen_gleda.dodaj_kanal("B92")
+print("Lista kanala: ", mladen_gleda.get_kanali())
+mladen_gleda.dodaj_kanal("RTCG")
+mladen_gleda.dodaj_kanal("Vijesti")
+print("Lista kanala (dodati RTCG i Vijesti): ", mladen_gleda.get_kanali())
