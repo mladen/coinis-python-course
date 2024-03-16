@@ -76,8 +76,15 @@ class Turnir:
             pobjednik = slucajno_izabrani_igrac_2
             gubitnik = slucajno_izabrani_igrac_1
 
+        # Update-ujemo listu igraca i njihove poene
+        self._lista_igraca.remove(pobjednik)
+        self._lista_igraca.remove(gubitnik)
+        pobjednik = (pobjednik[0], pobjednik[1] + 1)
+        self._lista_igraca.append(pobjednik)
+        self._lista_igraca.append(gubitnik)
+
         print(
-            f"Igraci u ovoj rundi: {slucajno_izabrani_igrac_1[0]} i {slucajno_izabrani_igrac_2[0]}. Pobjednik je {pobjednik[0]}."
+            f"Igraci u ovoj rundi: {slucajno_izabrani_igrac_1[0]} i {slucajno_izabrani_igrac_2[0]}. Pobjednik je {pobjednik[0]}.\n"
         )
         self._broj_rundi += 1
 
@@ -86,9 +93,9 @@ turnir = Turnir("Teniski turnir", 5)
 turnir.dodaj_igraca("Igrac 1")
 turnir.dodaj_igraca("Igrac 2")
 turnir.dodaj_igraca("Igrac 3")
-print(turnir)
+print(f"\nTrenutna lista igraca i njihovih poena:\n{turnir}")
 turnir.pokreni_rundu()
 turnir.pokreni_rundu()
 turnir.pokreni_rundu()
+print(f"\nTrenutna lista igraca i njihovih poena:\n{turnir}")
 turnir.prikazi_najboljeg_igraca()
-print(turnir)
