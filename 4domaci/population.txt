@@ -1,0 +1,7 @@
+Poljska,Krakov,1725000
+Njemacka,Berlin,3769000
+Poljska,Varsava,1708000
+Poljska,Vroclav,643000
+Poljska,Poznan,530000
+Njemacka,Frankfurt na Majni,650000
+Njemacka,Dortmund,588000
