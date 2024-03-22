@@ -53,3 +53,21 @@ def get_products_older_than(year):
 
 
 get_products_older_than(2018)
+
+
+# Reads the products from the file and prints the price of all the products
+def get_total_price():
+    total_price = 0
+    try:
+        with open(file_path, "r") as file:
+            lines = file.readlines()
+            for line in lines[1:]:  # Skip the first line
+                product = line.strip().split(", ")
+                total_price += int(product[3]) * int(product[4])
+    except Exception as e:
+        print(f"An error occurred: {e}")
+    else:
+        print(f"The total price of all products is: {total_price}")
+
+
+get_total_price()
