@@ -21,6 +21,7 @@ list_of_products = [
 ]
 
 
+# Writes the list of products to a file
 def append_to_file(list_of_products):
     try:
         with open(file_path, "a") as file:
@@ -36,3 +37,19 @@ def append_to_file(list_of_products):
 
 
 append_to_file(list_of_products)
+
+
+# Reads the products from the file and prints the ones older than the given year
+def get_products_older_than(year):
+    try:
+        with open(file_path, "r") as file:
+            lines = file.readlines()
+            for line in lines[1:]:  # Skip the first line
+                product = line.strip().split(", ")
+                if int(product[2]) > year:
+                    print(product)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+
+get_products_older_than(2018)
