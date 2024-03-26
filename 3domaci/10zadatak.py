@@ -8,8 +8,12 @@ class Color:
     __green: int
     __blue: int
 
-    def __str__(self):
-        return f"Color({self.__red}, {self.__green}, {self.__blue})"
+    def __lt__(self, other_color):
+        return (
+            self.__red < other_color.__red
+            and self.__green < other_color.__green
+            and self.__blue < other_color.__blue
+        )
 
     def get_red(self):
         return self.__red
