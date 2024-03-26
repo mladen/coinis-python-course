@@ -15,6 +15,9 @@ class Color:
             and self.__blue < other_color.__blue
         )
 
+    def __str__(self):
+        return f"red: {self.__red}, green: {self.__green}, blue: {self.__blue}"
+
     def get_red(self):
         return self.__red
 
@@ -71,4 +74,6 @@ red = Color(255, 0, 0)
 print(red)
 red.add_red(10)
 red.add_red(-310)
+print(red)
+red.add_red(-23)
 print(red)
