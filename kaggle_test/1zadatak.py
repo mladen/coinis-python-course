@@ -20,11 +20,25 @@ try:
 
         for index in range(len(svi_podaci) - 1):
             # print(svi_podaci[index])
-            broj = int(svi_podaci[index][4].strip())
+            # broj = int(float((svi_podaci[index][4].strip())))
+            broj = svi_podaci[index][4].strip()
             salary.append(broj)
 
-        print(type(salary[0]))
+        # print(type(salary[0]))
 
+        cleaned_values = []
+
+        for value in salary:
+            # Clean the string (e.g., remove commas)
+            cleaned_value = value.replace(",", "")  # Remove commas
+            try:
+                new_value = int(float(cleaned_value))
+                cleaned_values.append(new_value)
+            except ValueError:
+                print(f"Could not convert {value} to float")
+
+        print(f"Maksimalna vrijednost: {max(cleaned_values)}")
+        print(f"Minimalna vrijednost: {min(cleaned_values)}")
         # salaries = []
 
         # print(len(salaries))
