@@ -40,7 +40,7 @@ try:
         print(f"Maksimalna vrijednost: {max(cleaned_values)}")
         print(f"Minimalna vrijednost: {min(cleaned_values)}")
 
-        # Prosječna vrijednost
+        # Prosjecna vrijednost
         suma = 0
         for value in cleaned_values:
             suma += value
@@ -48,6 +48,14 @@ try:
         prosjek = suma / len(cleaned_values)
 
         print(f"Prosjecna vrijednost: {prosjek}")
+
+        # Procentualna razlika izmedju maksimalne i prosjecne vrijednosti
+        razlika = max(cleaned_values) - prosjek
+        procenat = (razlika / prosjek) * 100
+
+        print(
+            f"Procentualna razlika izmedju maksimalne i prosjecne vrijednosti: {procenat}%"
+        )
 
         # salaries = [
         #     int(red[4]) for red in svi_podaci[1:] # TODO: Provjeriti ovo
