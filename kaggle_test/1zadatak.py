@@ -39,9 +39,15 @@ try:
 
         print(f"Maksimalna vrijednost: {max(cleaned_values)}")
         print(f"Minimalna vrijednost: {min(cleaned_values)}")
-        # salaries = []
 
-        # print(len(salaries))
+        # Prosječna vrijednost
+        suma = 0
+        for value in cleaned_values:
+            suma += value
+
+        prosjek = suma / len(cleaned_values)
+
+        print(f"Prosjecna vrijednost: {prosjek}")
 
         # salaries = [
         #     int(red[4]) for red in svi_podaci[1:] # TODO: Provjeriti ovo
